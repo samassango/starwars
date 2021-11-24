@@ -3,6 +3,16 @@ import { Alert, Card, Col, Container, Nav, Row, Spinner } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams  } from 'react-router-dom';
 import { getSearchPeople } from '../../application/actions';
+const style= {
+    row:{
+         margin:10,
+          padding:10,
+          borderWidth:1,
+          borderRadius:5,
+          fontSize:20
+    }
+   
+}
 const Person = (props:any) => {
     const params = useParams();
     //person
@@ -36,17 +46,29 @@ console.log(people);
     <Card>
       <Card.Body>
        <Card.Text>
-        <Row>
-            <Col>Name</Col><Col>{`${people[0].name}`}</Col>
+        <Row style={{
+          backgroundColor: '#d5d5df',
+          ...style.row
+        }} >
+            <Col><strong>Name</strong></Col><Col>{`${people[0].name}`}</Col>
         </Row>
-        <Row>
-            <Col>Height</Col><Col>{`${people[0].height}`}</Col>
+        <Row  style={{
+          backgroundColor: '#acacc2',
+          ...style.row
+        }}>
+            <Col><strong>Height</strong></Col><Col>{`${people[0].height}`}</Col>
         </Row>
-        <Row>
-            <Col>Mass</Col><Col>{`${people[0].mass}`}</Col>
+        <Row style={{
+          backgroundColor: '#bcbcc4',
+          ...style.row
+        }}>
+            <Col><strong>Mass</strong></Col><Col>{`${people[0].mass}`}</Col>
         </Row>
-        <Row>
-            <Col>Homeworld</Col><Col>{`${people[0].homeworld}`}</Col>
+        <Row style={{
+          backgroundColor: '#acacc2',
+          ...style.row
+        }}>
+            <Col><strong>Homeworld</strong></Col><Col>{`${people[0].homeworld}`}</Col>
         </Row>
         </Card.Text>
         <Card.Link href="/">Back To List</Card.Link>
