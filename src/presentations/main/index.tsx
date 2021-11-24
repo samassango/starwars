@@ -50,8 +50,8 @@ const Main = (props:any) => {
         <tbody>
             {peoples && peoples.map((person:IPeople, index:number)=>(
             <tr key={`${index}___${person.name?.replace(' ','__')}`}>
-                <td><BsFillPersonFill size={30} color='#009933'/></td>
-                <td>{person.name}</td>
+                <td>{index+1}</td>
+                <td><BsFillPersonFill size={30} color='#009933'/>{' '}{person.name}</td>
                 <td>{person.height}</td>
                 <td>{person.gender}</td>
                 <td>{person.mass}</td>
