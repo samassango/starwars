@@ -1,8 +1,8 @@
 import Button from 'react-bootstrap/Button'
 import React, { useState, useEffect} from 'react';
-import { Col, Container, Pagination, Row, Spinner, Table } from 'react-bootstrap';
+import { Alert, Col, Container, Pagination, Row, Spinner, Table } from 'react-bootstrap';
 import { useSelector,useDispatch } from 'react-redux';
-// import { Redirect } from 'react-router-dom';
+import { useNavigate  } from 'react-router-dom';
 import { getListPeoples, IPeople } from '../../application/actions';
 
 const Main = (props:any) => {
@@ -11,6 +11,7 @@ const Main = (props:any) => {
     const peoplesIsLoading:boolean =  useSelector((state: any) => state.isLoadingList);
 
     const dispatch = useDispatch();
+    let navigate = useNavigate();
 
     useEffect(() => {
         const pageNo:String = page.toString();
@@ -22,15 +23,16 @@ const Main = (props:any) => {
         dispatch(getListPeoples(pageNo));
     },[page, dispatch]);
 
-    const onDetailView=()=>{
-        return// <Redirect to="/view-details"/>
-    }
 
     return (
     <Container>
         <Row className="justify-content-md-center">
         <Row>
-            <Col md={{ span: 6, offset: 5 }}><h3>{`Star Wars`}</h3></Col>
+            <Col>
+                <Alert  variant='success'>
+                    <h3>{`Star Wars Dashboard`}</h3>
+                </Alert>
+            </Col>
         </Row>
         <Table striped bordered hover>
         <thead>
@@ -53,7 +55,7 @@ const Main = (props:any) => {
                 <td>{person.gender}</td>
                 <td>{person.mass}</td>
                 <td>{person.homeworld}</td>
-                <td><Button size="sm" variant="outline-success">View</Button></td>
+                <td><Button onClick={()=>navigate(`/view-details/${person.name}`)} size="sm" variant="outline-success">View</Button></td>
             </tr>
             ))}
            
@@ -89,4 +91,6 @@ const Main = (props:any) => {
     )
 }
 export default Main;
+
+
 

@@ -24,7 +24,7 @@ variables:{
 }});
 
 export const searchPeople= async(searchName: String)=>await client.query({
-     query:gql`query getSearch($search:String){ search(search: $search){
+     query:gql`query getSearch($search:String!){ search(search: $search){
         name,
         gender,
         height,

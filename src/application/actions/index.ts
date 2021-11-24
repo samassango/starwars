@@ -37,8 +37,8 @@ export const getListPeoples =(pageNo:String)=>( dispatch:any )=>{
 export const getSearchPeople =(searchName:String)=>(dispatch:any)=>{
 dispatch(searchPeoplesInit());
 return searchPeople(searchName).then((results)=>{
-    dispatch(getPeoplesSuccess(results.data.search));
+    dispatch(searchPeopleSuccess(results.data.search));
 }).catch((error)=>{
-    dispatch(getPeoplesFail(error));
+    dispatch(searchPeopleFail(error));
 });
 }

@@ -2,7 +2,7 @@ import * as Constants from '../constants';
 
 const initialState={
     peoples:[],
-    person:null,
+    person:[],
     isLoadingList:false,
     isLoading:false,
     isLoaded:false,
