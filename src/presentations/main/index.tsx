@@ -4,6 +4,7 @@ import { Alert, Col, Container, Pagination, Row, Spinner, Table } from 'react-bo
 import { useSelector,useDispatch } from 'react-redux';
 import { useNavigate  } from 'react-router-dom';
 import { getListPeoples, IPeople } from '../../application/actions';
+import { BsFillPersonFill, BsFillEyeFill } from "react-icons/bs";
 
 const Main = (props:any) => {
     const [page, setPage] = useState<number>(1);
@@ -49,13 +50,13 @@ const Main = (props:any) => {
         <tbody>
             {peoples && peoples.map((person:IPeople, index:number)=>(
             <tr key={`${index}___${person.name?.replace(' ','__')}`}>
-                <td>{index+1}</td>
+                <td><BsFillPersonFill size={30} color='#009933'/></td>
                 <td>{person.name}</td>
                 <td>{person.height}</td>
                 <td>{person.gender}</td>
                 <td>{person.mass}</td>
                 <td>{person.homeworld}</td>
-                <td><Button onClick={()=>navigate(`/view-details/${person.name}`)} size="sm" variant="outline-success">View</Button></td>
+                <td><Button onClick={()=>navigate(`/view-details/${person.name}`)} size="sm" variant="outline-success"><BsFillEyeFill size={20}/></Button></td>
             </tr>
             ))}
            

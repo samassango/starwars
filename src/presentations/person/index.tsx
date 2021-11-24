@@ -3,6 +3,9 @@ import { Alert, Card, Col, Container, Nav, Row, Spinner } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams  } from 'react-router-dom';
 import { getSearchPeople } from '../../application/actions';
+import { BsFillPersonFill } from "react-icons/bs";
+import { GiBodyHeight, GiFleshyMass } from "react-icons/gi";
+import {MdHomeWork} from "react-icons/md";
 const style= {
     row:{
          margin:10,
@@ -50,25 +53,25 @@ console.log(people);
           backgroundColor: '#d5d5df',
           ...style.row
         }} >
-            <Col><strong>Name</strong></Col><Col>{`${people[0].name}`}</Col>
+            <Col><BsFillPersonFill color='#009933'/>{'  '}<strong>Name</strong></Col><Col>{`${people[0].name}`}</Col>
         </Row>
         <Row  style={{
           backgroundColor: '#acacc2',
           ...style.row
         }}>
-            <Col><strong>Height</strong></Col><Col>{`${people[0].height}`}</Col>
+            <Col><GiBodyHeight color='#009933'/>{'  '}<strong>Height</strong></Col><Col>{`${people[0].height}`}</Col>
         </Row>
         <Row style={{
           backgroundColor: '#bcbcc4',
           ...style.row
         }}>
-            <Col><strong>Mass</strong></Col><Col>{`${people[0].mass}`}</Col>
+            <Col><GiFleshyMass color='#009933'/>{'  '}<strong>Mass</strong></Col><Col>{`${people[0].mass}`}</Col>
         </Row>
         <Row style={{
           backgroundColor: '#acacc2',
           ...style.row
         }}>
-            <Col><strong>Homeworld</strong></Col><Col>{`${people[0].homeworld}`}</Col>
+            <Col><MdHomeWork color='#009933'/>{' '}<strong>Homeworld</strong></Col><Col>{`${people[0].homeworld}`}</Col>
         </Row>
         </Card.Text>
         <Card.Link href="/">Back To List</Card.Link>
