@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button'
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, JSXElementConstructor} from 'react';
 import { Alert, Col, Container, Pagination, Row, Spinner, Table } from 'react-bootstrap';
 import { useSelector,useDispatch } from 'react-redux';
 import { useNavigate  } from 'react-router-dom';

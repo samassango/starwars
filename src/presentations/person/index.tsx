@@ -1,8 +1,8 @@
-import React, { useState, useEffect} from 'react'
+import React, { useState, useEffect, useMemo} from 'react'
 import { Alert, Card, Col, Container, Nav, Row, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams  } from 'react-router-dom';
-import { getSearchPeople } from '../../application/actions';
+import { getSearchPeople, IPeople } from '../../application/actions';
 import { BsFillPersonFill } from "react-icons/bs";
 import { GiBodyHeight, GiFleshyMass } from "react-icons/gi";
 import {MdHomeWork} from "react-icons/md";
@@ -17,35 +17,37 @@ const style= {
    
 }
 const Person = (props:any) => {
-    const params = useParams();
     //person
     const people =  useSelector((state: any) => state.person);
     const peoplesIsLoading = useSelector((state: any) => state.isLoading);
     const dispatch = useDispatch();
-    console.log(params);
+    const params = useParams<string>();
+    
     useEffect(() => {
         const {name}= params
         if(!!name){
             dispatch(getSearchPeople(name));
         }
     },[]);
-console.log(people);
+    const person:IPeople = useMemo(() => people[0], [people])
+
     return (
         <Container>
+            <Row>
             <Nav
              className="justify-content-end" 
             activeKey="/home"
             >
                 <Nav.Item>
-    <Nav.Link href="/">Dashboard</Nav.Link>
-  </Nav.Item>
+                    <Nav.Link href="/">Dashboard</Nav.Link>
+                </Nav.Item>
             </Nav>
+            </Row>
   <Row  className="justify-content-md-center">
      <Alert  variant='success'>
-        <h3 className="title is-1">Star wars Details</h3>
+     <Alert.Heading>Star wars Details</Alert.Heading>
       </Alert>
-      {people.length>0 &&
-      <Col>
+      {person &&
     <Card>
       <Card.Body>
        <Card.Text>
@@ -53,31 +55,30 @@ console.log(people);
           backgroundColor: '#d5d5df',
           ...style.row
         }} >
-            <Col><BsFillPersonFill color='#009933'/>{'  '}<strong>Name</strong></Col><Col>{`${people[0].name}`}</Col>
+            <Col><BsFillPersonFill color='#009933'/>{'  '}<strong>Name</strong></Col><Col>{`${person.name}`}</Col>
         </Row>
         <Row  style={{
           backgroundColor: '#acacc2',
           ...style.row
         }}>
-            <Col><GiBodyHeight color='#009933'/>{'  '}<strong>Height</strong></Col><Col>{`${people[0].height}`}</Col>
+            <Col><GiBodyHeight color='#009933'/>{'  '}<strong>Height</strong></Col><Col>{`${person.height}`}</Col>
         </Row>
         <Row style={{
           backgroundColor: '#bcbcc4',
           ...style.row
         }}>
-            <Col><GiFleshyMass color='#009933'/>{'  '}<strong>Mass</strong></Col><Col>{`${people[0].mass}`}</Col>
+            <Col><GiFleshyMass color='#009933'/>{'  '}<strong>Mass</strong></Col><Col>{`${person.mass}`}</Col>
         </Row>
         <Row style={{
           backgroundColor: '#acacc2',
           ...style.row
         }}>
-            <Col><MdHomeWork color='#009933'/>{' '}<strong>Homeworld</strong></Col><Col>{`${people[0].homeworld}`}</Col>
+            <Col><MdHomeWork color='#009933'/>{' '}<strong>Homeworld</strong></Col><Col>{`${person.homeworld}`}</Col>
         </Row>
         </Card.Text>
         <Card.Link href="/">Back To List</Card.Link>
     </Card.Body>
     </Card>
-    </Col>
       }
     
     {peoplesIsLoading &&

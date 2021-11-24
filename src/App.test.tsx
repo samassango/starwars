@@ -2,8 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+test('renders App component', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  
 });
+test('test App component snapshot',()=>{
+  const {container, getByText} = render(<App />);
+  expect(container.firstChild).toMatchSnapshot()
+})

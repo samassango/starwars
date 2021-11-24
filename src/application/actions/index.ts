@@ -25,7 +25,6 @@ export const searchPeopleFail =(error:any)=>({type: Constants.LOAD_SEARCH_OF_PEO
 
 export const getListPeoples =(pageNo:String)=>( dispatch:any )=>{
     dispatch(getPeoplesInit());
-    console.log(pageNo);
     return getPeoples(pageNo).then((results)=>{
         console.log(results);
         dispatch(getPeoplesSuccess(results.data.peoples));
